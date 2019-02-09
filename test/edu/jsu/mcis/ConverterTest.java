@@ -71,7 +71,7 @@ public class ConverterTest {
     }
     
     @Test
-    public void testConvertCSVtoJSON() {
+    public void testConvertCSVtoJSON() throws ParseException {
         
         assertEquals(jsonString, Converter.csvToJson(csvString));
         
@@ -85,7 +85,7 @@ public class ConverterTest {
     }
 	
     @Test
-    public void testConvertJSONtoCSVtoJSON(){
+    public void testConvertJSONtoCSVtoJSON() throws ParseException{
         
         String csv = Converter.jsonToCsv(jsonString);
         String json = Converter.csvToJson(csv);
@@ -94,7 +94,7 @@ public class ConverterTest {
     }
 	
     @Test
-    public void testConvertCSVtoJSONtoCSV(){
+    public void testConvertCSVtoJSONtoCSV() throws ParseException{
         
         String json = Converter.csvToJson(csvString);
         String csv = Converter.jsonToCsv(json);
