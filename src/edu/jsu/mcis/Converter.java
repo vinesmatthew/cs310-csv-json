@@ -73,8 +73,8 @@ public class Converter {
             
             String[] record;
             
-            int[] rowHeaders = new int[full.size() - 1];
-            String[][] data = new String[full.size() - 1][colHeaders.length - 1];
+            String[] rowHeaders = new String[full.size() - 1];
+            int[][] data = new int[full.size() - 1][colHeaders.length - 1];
             int counter = 0;
             int counter2 = 0;
 
@@ -82,17 +82,17 @@ public class Converter {
                 record = iterator.next();
                 for (int i = 0; i < colHeaders.length; i++) {
                     if (i == 0) {
-                        rowHeaders[counter] = Integer.parseInt(record[i]);
+                        rowHeaders[counter] = record[i];
                         counter++;
                     } else {
-                        data[counter2][i - 1] = record[i];
+                        data[counter2][i - 1] = Integer.parseInt(record[i]);
                     }
                 }
                 counter2++;
             }
             
             counter = 0;
-            for (int i : rowHeaders) {
+            for (String i : rowHeaders) {
                 modifyRecord.add(counter, i);
                 counter++;
             }
@@ -138,7 +138,6 @@ public class Converter {
             StringWriter writer = new StringWriter();
             CSVWriter csvWriter = new CSVWriter(writer, ',', '"', '\n');
             
-            // INSERT YOUR CODE HERE
             
         }
         
