@@ -130,14 +130,38 @@ public class Converter {
     }
     
     public static String jsonToCsv(String jsonString) {
-        
+                
         String results = "";
         
         try {
-
+            
             StringWriter writer = new StringWriter();
             CSVWriter csvWriter = new CSVWriter(writer, ',', '"', '\n');
-            
+                        
+            String[] sections = jsonString.split("],\"");
+            String[] rowHeaders = sections[0].split(":\\[")[1].replaceAll("\"", "").split(",");
+                        
+            String[] colHeaders = sections[2].split(":")[1].replaceAll("\"", "").replace("[", "").replace("]", "").replace("}", "").split(",");
+                        
+            String[] almostData = sections[1].split(":\\[")[1].split("],\\[");
+            String[][] data = new String[almostData.length][colHeaders.length];
+                        
+            for (int i = 0; i < data.length; i++) {
+                for (int j = 0; j < colHeaders.length; j++) {
+                    if (j == 0) {
+                        data[i][j] = rowHeaders[i];
+                    } else {
+                        data[i][j] = almostData[i].split(",")[j - 1].replace("[", "").replace("]", "");
+                    }
+                }
+            }
+                        
+            csvWriter.writeNext(colHeaders);
+            for (String[] i : data) {
+                csvWriter.writeNext(i);
+            }
+                        
+            results = writer.toString();
             
         }
         
