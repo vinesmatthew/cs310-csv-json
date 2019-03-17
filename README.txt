@@ -26,3 +26,6 @@ Sample Output
 	"111160","454","77","125","252"
 	"111276","579","130","111","338"
 	"111241","973","236","237","500"
+	
+Graphical Possiblities
+	With little code neccessary, a graphical version of this application takes little effort. First, a class ending a JFrame must be created and initialized. Next, two labels are created to represent the output of both conversions. A text field is also created for the user to enter the file path, and both are added to a JPanel which is added to the JFrame. Once the user clicks the submit button, the text field and read and sent to the converter to replace the file destination of the original path. After the converter finishes, the output is sent to the main, then graphical class where the labels are set to the CSV and JSON string respecively.
